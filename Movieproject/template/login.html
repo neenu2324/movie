@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login page</title>
+</head>
+<style>
+    body {background-color:grey;
+          username:red;
+    }
+</style>
+<body>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+<form action="{% url 'Movieapp:index' %}"  method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="enter ur username"><br>
+    <input type="password" name="password" placeholder="enter ur password"><br>
+    <input type="submit">
+</form>
+</body>
+</html>
