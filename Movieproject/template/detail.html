@@ -3,23 +3,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="{{Movie.img.url}}" width="300" height="300">
+            <img src="{{ Movie.img.url }}" width="300" height="400">
         </div>
+        <div class="col-md-6">
+          <h2>{{Movie.name}}</h2>
+          <h4>{{Movie.year}}</h4>
+          <h5>{{Movie.actors}}</h5>
+          <h6>{{Movie.category}}</h6>
+          <p>{{Movie.des}}</p>
 
- <div class="col-md-6">
-     <h2>{{Movie.name}}</h2>
-     <h4>{{Movie.year}}</h4>
-     <h5>{{Movie.actors}}</h5>
-     <h6>{{Movie.category}}</h6>
-     <p>{{Movie.des}}</p>
-
-     <div class="btn-group" role="group" aria-label="Movie Actions">
-       <a class="btn btn-warning" href="{% url 'Movieapp:update' Movie.id %}">Edit</a>
-       <a class="btn btn-danger"  href="{% url 'Movieapp:delete' Movie.id %}">Delete</a>
-       <a class="btn btn-success" href="{% url 'Movieapp:review' Movie.id %}">Review</a>
-     </div>
- </div>
+                    <div class="btn-group" role="group" aria-label="Movie Actions">
+                    {% if Movie.user == user %}
+                     <a class="btn btn-warning" href="{% url 'Movieapp:update' Movie.id %}">Edit</a>
+                     <a class="btn btn-danger" href="{% url 'Movieapp:delete' Movie.id %}">Delete</a>
+                    {% endif %}
+                    <a class="btn btn-success" href="{% url 'Movieapp:addreview' Movie.id %}">Review</a>
+                    </div>
+        </div>
     </div>
 </div>
-
 {% endblock %}

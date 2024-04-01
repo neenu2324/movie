@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<form action="{% url 'Movieapp:searchResult' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="enter movie name">
+    <input type="submit">
+</form>
+
+<label for="categ">Choose a category:</label>
+
+<select id="categ" name="categ" onchange="goToLink(this)">
+    <option value="1">select category</option>
+    {% for c in cat %}
+    <option value="{{ c.id }}">{{ c.name }}</option>
+    {% endfor %}
+</select>
+
+<script>
+function goToLink(select) {
+    var categoryId = select.value;
+    var url = "{% url 'Movieapp:category_index' 0 %}".replace("0", categoryId);
+    window.location.href = url;
+}
+</script>
+
+
+
+<div class="container">
+    <div class="row">
+        {% for i in movie_list %}
+        <div class="card mb-4">
+            <div class="card" style="width:18rem;">
+  <img src="{{i.img.url}}"  class="card-img-top" alt="" width="200" height="200">
+  <div class="card-body">
+    <h5 class="card-title">{{i.name}}</h5>
+
+      <a class="btn btn-warning" href="{% url 'Movieapp:detail' i.id %}">View</a>
+  </div>
+</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

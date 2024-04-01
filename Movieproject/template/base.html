@@ -14,7 +14,31 @@
   <a class="navbar-brand" href="#">
 
   </a>
-    <a class="btn btn-success" href="{% url 'Movieapp:add_movie' %}">Add Movie</a>
+   <div class="row">
+    <div class="col-md-4">
+        <a class="btn btn-success" href="{% url 'Movieapp:add_movie' %}">Add Movie</a>
+    </div>
+    <div class="col-md-4">
+        <select id="categ" name="categ" onchange="goToLink(this)" class="form-control">
+            <option value="1">Category</option>
+            {% for c in cat %}
+            <option value="{{ c.id }}">{{ c.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <form action="{% url 'Movieapp:searchResult' %}" method="post" class="search-form">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Enter movie name" class="form-control">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 </nav>
 {% block body %}
 {% endblock %}

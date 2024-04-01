@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block body %}
+<form method="POST" >
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="enter ur category name">
+    <input type="submit">
+</form>
+{% endblock %}

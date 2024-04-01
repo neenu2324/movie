@@ -1,6 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review</title>
+    <style>
+        /* Hide radio buttons */
+        input[type="radio"] {
+            display: none;
+        }
+        /* Style the star icons */
+        label.star {
+            font-size: 2em;
+            color: #ccc;
+            cursor: pointer;
+        }
+        /* Set the color of selected stars */
+        input[type="radio"]:checked ~ label.star:before {
+            color: #ffca08;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Movie Review</h2>
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Review</button>
+    <label for="movie_name">Movie Name:</label><br>
+    <input type="text" id="movie_name" name="movie_name" value="{{ mov.name }}" readonly><br><br>
+
+    <label for="review">Review:</label><br>
+    <textarea id="review" name="review" rows="4" cols="50"></textarea><br><br>
+
+    <!-- Radio buttons for star rating -->
+    <input type="radio" id="rating5" name="rating" value="5"><label class="star" for="rating5">&#9733;</label>
+    <input type="radio" id="rating4" name="rating" value="4"><label class="star" for="rating4">&#9733;</label>
+    <input type="radio" id="rating3" name="rating" value="3"><label class="star" for="rating3">&#9733;</label>
+    <input type="radio" id="rating2" name="rating" value="2"><label class="star" for="rating2">&#9733;</label>
+    <input type="radio" id="rating1" name="rating" value="1"><label class="star" for="rating1">&#9733;</label>
+
+    <input type="submit" value="Submit">
 </form>
+
+</body>
+</html>
